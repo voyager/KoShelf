@@ -114,7 +114,15 @@ mod tests {
         std::fs::write(&cover_path, b"cover").expect("cover write");
 
         assert!(
-            delete_item_and_media(&repo, CANONICAL_ID, &media_dirs, false, false, "test removal").await
+            delete_item_and_media(
+                &repo,
+                CANONICAL_ID,
+                &media_dirs,
+                false,
+                false,
+                "test removal"
+            )
+            .await
         );
 
         assert!(
@@ -147,7 +155,15 @@ mod tests {
 
         assert!(link_path.exists());
         assert!(
-            delete_item_and_media(&repo, CANONICAL_ID, &media_dirs, true, false, "test removal").await
+            delete_item_and_media(
+                &repo,
+                CANONICAL_ID,
+                &media_dirs,
+                true,
+                false,
+                "test removal"
+            )
+            .await
         );
         assert!(!link_path.exists());
     }
@@ -175,8 +191,15 @@ mod tests {
         std::fs::write(&cover_path, b"cover").expect("cover write");
 
         assert!(
-            delete_item_and_media(&repo, CANONICAL_ID, &media_dirs, false, true, "test removal")
-                .await
+            delete_item_and_media(
+                &repo,
+                CANONICAL_ID,
+                &media_dirs,
+                false,
+                true,
+                "test removal"
+            )
+            .await
         );
 
         // The whole point: the file went, the reading record did not.
@@ -246,7 +269,9 @@ mod tests {
         let cover_path = media_dirs.covers_dir.join(format!("{item_id}.webp"));
         std::fs::write(&cover_path, b"cover").expect("cover write");
 
-        assert!(delete_item_and_media(&repo, item_id, &media_dirs, false, false, "test removal").await);
+        assert!(
+            delete_item_and_media(&repo, item_id, &media_dirs, false, false, "test removal").await
+        );
 
         assert!(repo.get_item(item_id).await.expect("get item").is_none());
         assert!(cover_path.exists());
