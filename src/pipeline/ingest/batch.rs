@@ -166,6 +166,7 @@ mod tests {
             output_dir: output_dir.to_path_buf(),
             site_title: "KoShelf".to_string(),
             include_unread: true,
+            retain_missing: false,
             library_paths: vec![library_path.to_path_buf()],
             metadata_location: MetadataLocation::InBookFolder,
             statistics_db_paths: vec![],

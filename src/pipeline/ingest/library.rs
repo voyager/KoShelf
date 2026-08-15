@@ -67,6 +67,7 @@ pub(crate) async fn sync_library(
             item_id,
             media_dirs,
             config.is_internal_server,
+            config.retain_missing,
             "book removed from disk",
         )
         .await;

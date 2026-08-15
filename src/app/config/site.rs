@@ -14,6 +14,9 @@ pub struct SiteConfig {
     pub site_title: String,
     /// Whether to include unread books
     pub include_unread: bool,
+    /// Whether an item whose file has gone is kept, with its annotations, rather
+    /// than deleted. The reading record outlives the file it came from.
+    pub retain_missing: bool,
     /// Paths to library directories (books and/or comics)
     pub library_paths: Vec<PathBuf>,
     /// Where to look for KoReader metadata

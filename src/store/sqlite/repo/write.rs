@@ -61,6 +61,10 @@ impl LibraryRepository {
                 chapters_json = excluded.chapters_json,
                 last_open_at = excluded.last_open_at,
                 total_reading_time_sec = excluded.total_reading_time_sec,
+                -- Ingest only runs for a file that is present, so an item
+                -- reaching here is by definition not missing. This is what
+                -- clears the flag when a file comes back.
+                file_missing = 0,
                 updated_at = excluded.updated_at",
         )
         .bind(&item.id)
@@ -180,6 +184,18 @@ impl LibraryRepository {
             .execute(&self.pool)
             .await
             .context("Failed to delete library item")?;
+        Ok(())
+    }
+
+    /// Flag an item whose file is gone, keeping the row and everything hanging
+    /// off it. The alternative is `delete_item`, which cascades the annotations
+    /// away with it.
+    pub async fn mark_item_missing(&self, id: &str) -> Result<()> {
+        sqlx::query("UPDATE library_items SET file_missing = 1 WHERE id = ?1")
+            .bind(id)
+            .execute(&self.pool)
+            .await
+            .context("Failed to mark library item as missing")?;
         Ok(())
     }
 

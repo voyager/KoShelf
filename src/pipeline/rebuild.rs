@@ -117,8 +117,14 @@ pub async fn rebuild(
     // ── 2. Delete removed items ──────────────────────────────────────
     let mut deleted_count = 0u64;
     for book_path_str in &delete_book_paths {
-        if delete_item_for_book_path(repo, book_path_str, &media_dirs, config.is_internal_server)
-            .await
+        if delete_item_for_book_path(
+            repo,
+            book_path_str,
+            &media_dirs,
+            config.is_internal_server,
+            config.retain_missing,
+        )
+        .await
         {
             deleted_count += 1;
         }
@@ -384,6 +390,7 @@ mod tests {
             output_dir: output_dir.to_path_buf(),
             site_title: "KoShelf".to_string(),
             include_unread: true,
+            retain_missing: false,
             library_paths: vec![output_dir.join("library")],
             metadata_location: MetadataLocation::InBookFolder,
             statistics_db_paths: vec![],

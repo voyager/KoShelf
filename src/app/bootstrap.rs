@@ -60,6 +60,7 @@ fn build_site_config(
         output_dir,
         site_title: common.title.clone(),
         include_unread: common.include_unread,
+        retain_missing: common.retain_missing,
         library_paths: common.library_path.clone(),
         metadata_location: metadata_location(common),
         statistics_db_paths: common.statistics_db.clone(),

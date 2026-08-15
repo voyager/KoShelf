@@ -75,6 +75,11 @@ fn merge_common_with_file_config(
         {
             common.include_unread = v;
         }
+        if let Some(v) = lib.retain_missing
+            && not_explicit(matches, "retain_missing")
+        {
+            common.retain_missing = v;
+        }
     }
 
     // ── koshelf section ──────────────────────────────────────────

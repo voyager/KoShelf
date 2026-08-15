@@ -24,6 +24,7 @@ pub struct LibrarySection {
     pub statistics_db: Option<Vec<PathBuf>>,
     pub kobo_db: Option<PathBuf>,
     pub include_unread: Option<bool>,
+    pub retain_missing: Option<bool>,
 }
 
 #[derive(Deserialize, Default, Debug)]

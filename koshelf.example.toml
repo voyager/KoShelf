@@ -11,6 +11,13 @@ paths = ["/path/to/books", "/path/to/comics"]
 # statistics_db = ["/kobo/statistics.sqlite3", "/boox/statistics.sqlite3"]
 # kobo_db = "/path/to/KoboReader.sqlite"
 # include_unread = false
+# Keep an item whose book file has gone, along with its highlights, notes and
+# reading status, instead of deleting it. Worth turning on when something else
+# removes files you have finished -- a read-it-later plugin deleting finished
+# articles, say, or swapping a book for a different edition -- and the reading
+# record matters more than the file. Such items are marked as missing, and their
+# download link is withdrawn rather than left broken.
+# retain_missing = false
 
 [koshelf]
 title = "KoShelf"

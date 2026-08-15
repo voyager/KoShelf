@@ -94,6 +94,10 @@ pub struct CommonArgs {
     #[arg(long, env = "KOSHELF_INCLUDE_UNREAD", default_value = "false")]
     pub include_unread: bool,
 
+    /// Keep items whose file has gone, with their annotations, instead of deleting them
+    #[arg(long, env = "KOSHELF_RETAIN_MISSING", default_value = "false")]
+    pub retain_missing: bool,
+
     // ── Data ────────────────────────────────────────────────────
     /// Persistent runtime data directory for cache files (for example library.sqlite).
     #[arg(long, env = "KOSHELF_DATA_PATH", alias = "data-dir")]
